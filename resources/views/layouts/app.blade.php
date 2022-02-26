@@ -15,7 +15,7 @@
     <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/select2.min.css') }}" rel="stylesheet" type="text/css" />
 
-    @livewireStyles
+   
 
     @yield('page_css')
     <!-- Template CSS -->
@@ -53,7 +53,7 @@
     @include('profile.change_password')
     @include('profile.edit_profile')
 
-    @livewireScripts
+   
 
 </body>
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
