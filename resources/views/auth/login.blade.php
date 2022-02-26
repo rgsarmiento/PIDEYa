@@ -62,6 +62,9 @@
                         Login
                     </button>
                 </div>
+                Already have an account ? <a
+                href="{{ route('register') }}">SignIn</a>
+                
             </form>
         </div>
     </div>
