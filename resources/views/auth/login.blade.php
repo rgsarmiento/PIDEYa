@@ -62,8 +62,8 @@
                         Login
                     </button>
                 </div>
-                Already have an account ? <a
-                href="{{ route('register') }}">SignIn</a>
+                Registrarme como <a
+                href="{{ route('register') }}">Usuario nuevo</a>
                 
             </form>
         </div>
