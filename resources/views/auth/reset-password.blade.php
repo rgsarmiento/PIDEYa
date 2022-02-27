@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="password_confirmation" class="control-label">Confirm Password</label>
+                    <label for="password_confirmation" class="control-label">Confirmar Password</label>
                     <input id="password_confirmation" type="password"
                            class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid': '' }}"
                            name="password_confirmation" tabindex="2">
@@ -47,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                        Set a New Password
+                        Establecer una nueva contraseña
                     </button>
                 </div>
             </form>
