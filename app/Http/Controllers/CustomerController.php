@@ -42,15 +42,21 @@ class CustomerController extends Controller
                 
         if (count($customers) > 0) {
             foreach ($customers as $key) {
-                $customer = new Customer();
-                $customer->identification_number = $key['identification_number'];
-                $customer->name = $key['name'];
-                $customer->company_id = $key['company_id'];
-                $customer->address = $key['address'];
-                $customer->phone = $key['phone'];
-                $customer->email = $key['email'];
-                $customer->municipality_id = $key['municipality_id'];
-                $customer->save();
+
+                try {                   
+                    $customer = new Customer();
+                    $customer->identification_number = $key['identification_number'];
+                    $customer->name = $key['name'];
+                    $customer->company_id = $key['company_id'];
+                    $customer->address = $key['address'];
+                    $customer->phone = $key['phone'];
+                    $customer->email = $key['email'];
+                    $customer->municipality_id = $key['municipality_id'];
+                    $customer->save();
+                  } catch (\Exception $e) {                                       
+                  }
+
+               
             }
             return [
                 'success' => true,

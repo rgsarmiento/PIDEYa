@@ -138,9 +138,17 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function show(Document $document)
+    public function show($id)
     {
-        //
+        $documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
+        
+        return ['data' => $documents];
+
+        /**return [
+            'success' => true,
+            'message' => 'creada/actualizada con éxito',
+            'documents' => $documents->collection,
+        ];*/
     }
 
     /**

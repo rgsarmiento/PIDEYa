@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Http\Request;
 use App\Models\Poduct;
 use App\Http\Requests\StorePoductRequest;
 use App\Http\Requests\UpdatePoductRequest;
@@ -72,7 +72,7 @@ class PoductController extends Controller
      * @param  \App\Models\Poduct  $poduct
      * @return \Illuminate\Http\Response
      */
-    public function show(Poduct $poduct)
+    public function show(Request $request)
     {
         //
     }
