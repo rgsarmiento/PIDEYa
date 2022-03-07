@@ -182,7 +182,7 @@
             document.getElementById("total_document").value = total_productos;
 
             document.getElementById("tbl_products").tFoot.innerHTML =
-                '<tr align="center"><th colspan="2"><i class="fa fa-sort-up" style="font-size:20px;color:#00D0C4;"></i>TOTAL $' +
+                '<tr align="left"><th colspan="2"><i class="fa fa-sort-up" style="font-size:20px;color:#00D0C4;"></i>TOTAL $' +
                 parseFloat(total_productos, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, "$1,")
                 .toString() + '</th></tr>';
 

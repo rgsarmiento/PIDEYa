@@ -5,21 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Document;
 use App\Http\Requests\StoreDocumentRequest;
 use App\Http\Requests\UpdateDocumentRequest;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 use App\Models\Poduct;
 use App\Models\Customer;
+use App\Models\Company_has_user;
 use stdClass;
 
 class DocumentController extends Controller
 {
     function __construct()
     {
-        $this->middleware('permission:documents.index', ['only' => ['index', 'show']]);
+        /**$this->middleware('permission:documents.index', ['only' => ['index', 'show']]);
         $this->middleware('permission:documents.crear', ['only' => ['create', 'store']]);
         $this->middleware('permission:documents.editar', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:documents.eliminar', ['only' => ['destroy']]);
+        $this->middleware('permission:documents.eliminar', ['only' => ['destroy']]); */
     }
     /**
      * Display a listing of the resource.
@@ -28,9 +30,24 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        $company_id = 1;
+        $user = auth()->user();
+        $role_user = auth()->user()->roles->first()->id;
+        $company_id = 0;
+        
+        if ($role_user <> 1) {
+            $user_id = $user->id;
+            
+            $company_has_user = Company_has_user::where('user_id', $user_id)->first();
 
-        $documents = Document::where('company_id', $company_id)->orderBy('updated_at', 'desc');
+            if ($company_has_user == null) {
+                Auth::logout();
+                return redirect('/');
+            } else {
+                $company_id = $company_has_user->company_id;
+            }
+        }
+
+        $documents = Document::where('user_id', $user_id)->orderBy('updated_at', 'desc');
         
         $nRegistros = count($documents->get());
 
@@ -46,7 +63,21 @@ class DocumentController extends Controller
      */
     public function create()
     {
-        $company_id = 1;
+        $user = auth()->user();
+        $role_user = auth()->user()->roles->first()->id;
+        $company_id = 0;
+
+        if ($role_user <> 1) {
+            $user_id = $user->id;
+            $company_has_user = Company_has_user::where('user_id', $user_id)->first();
+
+            if ($company_has_user == null) {
+                Auth::logout();
+                return redirect('/');
+            } else {
+                $company_id = $company_has_user->company_id;
+            }
+        }
 
         $products_document = new stdClass();
         $products_document->products = array();        
@@ -68,12 +99,28 @@ class DocumentController extends Controller
     public function store(StoreDocumentRequest $request)
     {
 
+        $user = auth()->user();
+        $role_user = auth()->user()->roles->first()->id;
+        $company_id = 0;
+
+        if ($role_user <> 1) {
+            $user_id = $user->id;
+            $company_has_user = Company_has_user::where('user_id', $user_id)->first();
+
+            if ($company_has_user == null) {
+                Auth::logout();
+                return redirect('/');
+            } else {
+                $company_id = $company_has_user->company_id;
+            }
+        }
+
         $fechaHora = Carbon::now();
         $data = $request->all();
        
        $documento = new Document();
-       $documento->company_id = 1;
-       $documento->user_id = 1;
+       $documento->company_id = $company_id;
+       $documento->user_id = $user_id;
        $documento->date_issue = $fechaHora->format('Y-m-d');
        $documento->customer_id = $data['customer_id'];
        $documento->products = $data['products'];

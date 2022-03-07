@@ -91,7 +91,7 @@
 
                         </tbody>
                         <tfoot style="background-color: #b5eee0;">
-                            <tr align="center">
+                            <tr align="letf">
                                 
                                 <th colspan="2"><i class="fa fa-sort-up" style="font-size:20px;color:#00D0C4;"></i>
                                    TOTAL  ${!! number_format(0, 2) !!} </th>
