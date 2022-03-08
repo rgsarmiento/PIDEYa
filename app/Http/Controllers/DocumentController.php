@@ -86,7 +86,7 @@ class DocumentController extends Controller
 
         //$products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         $products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
-        $customers = Customer::select('id', DB::raw('CONCAT(id, " - ", name) AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
+        $customers = Customer::select('id', DB::raw('CONCAT(identification_number, " - ", name) AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         return view('documents.crear', compact('products', 'customers', 'products_document'));
     }
 
@@ -140,8 +140,11 @@ class DocumentController extends Controller
      */
     public function show($id)
     {
-        $documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
+        //$documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
         
+        $documents = Document::select('documents.id', 'customers.identification_number','documents.products')
+        ->join('customers', 'documents.customer_id', '=', 'customers.id')->first();
+
         return ['data' => $documents];
 
         /**return [
@@ -180,8 +183,8 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Document $document)
+    public function destroy($id)
     {
-        //
+        Document::where('id', $id)->delete();
     }
 }
