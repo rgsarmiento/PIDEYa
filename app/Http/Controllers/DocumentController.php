@@ -142,8 +142,8 @@ class DocumentController extends Controller
     {
         //$documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
         
-        $documents = Document::select('documents.id', 'customers.identification_number','documents.products')
-        ->join('customers', 'documents.customer_id', '=', 'customers.id')->first();
+        $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total')
+        ->join('customers', 'documents.customer_id', '=', 'customers.id')->get();
 
         return ['data' => $documents];
 
