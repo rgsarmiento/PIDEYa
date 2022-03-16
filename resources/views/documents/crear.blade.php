@@ -84,8 +84,9 @@
                 }
                 producto = producto.substring(0,producto_index);
 
-                var total = (precio * cantidad);
                 cantidad = cantidad * quantity;
+                var total = (precio * cantidad);
+                
                 array = {
                     'id': n_productos,
                     'code': codigo,
