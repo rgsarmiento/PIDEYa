@@ -30,7 +30,11 @@
                 <div class="row" id="div_quantity_value">
                     <div class="col-md-4 col-6">
                         <div class="form-group">
-                            <label>Cantidad</label>
+                            <label>Cajas</label>
+                            <input type="number" class="form-control" id="quantity_c">
+                        </div>
+                        <div class="form-group">
+                            <label>Unidades</label>
                             <input type="number" class="form-control" id="quantity">
                         </div>
                     </div>

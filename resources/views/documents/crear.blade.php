@@ -55,10 +55,13 @@
                 var codigo = document.getElementById("select_product").value;
                 var producto = $("#select_product option:selected").text();
                 var cantidad = Number(document.getElementById("quantity").value);
+                var cajas = Number(document.getElementById("quantity_c").value);
                 
+                var valida_cantidad = cantidad + cajas;
+
                 if (producto != "-- Seleccionar --"){
 
-                if (cantidad <= 0 || producto.length == 0) {
+                if (valida_cantidad <= 0 || producto.length == 0) {
                     return false
                 }
 
@@ -84,7 +87,17 @@
                 }
                 producto = producto.substring(0,producto_index);
 
-                cantidad = cantidad * quantity;
+                if (cajas > 0 && quantity > 1) {
+                    quantity = (quantity * cajas);
+                }else{
+                    quantity = 0;
+                }
+
+                if (quantity == 1) {
+                    quantity = 0;
+                }
+
+                cantidad = (cantidad + quantity);
                 var total = (precio * cantidad);
                 
                 array = {
@@ -115,6 +128,7 @@
                 
                 //$('#select_product').val('');
                 document.getElementById("quantity").value = "";
+                document.getElementById("quantity_c").value = "";
 
                 calcular_total();
                     }
