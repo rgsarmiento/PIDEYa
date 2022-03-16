@@ -56,6 +56,8 @@
                 var producto = $("#select_product option:selected").text();
                 var cantidad = Number(document.getElementById("quantity").value);
                 
+                if (producto != "-- Seleccionar --"){
+
                 if (cantidad <= 0 || producto.length == 0) {
                     return false
                 }
@@ -68,16 +70,22 @@
                 var n_productos = productos.products.length;
 
                 var precio = 0;
+                var quantity = 0;
                 var largo = producto.length
                 var producto_index = producto.indexOf('P(');
+                var quantity_index = producto.indexOf('C(');
                 
-                if (producto_index !== -1) {
+                if (producto_index !== -1) {                   
+                    precio = producto.substring((producto_index + 2), quantity_index - 2);
+                }
+                if (quantity_index !== -1) {
                     var largo = producto.length
-                    precio = producto.substring((producto_index + 2), largo - 1);
+                    quantity = producto.substring((quantity_index + 2), largo - 1);
                 }
                 producto = producto.substring(0,producto_index);
-                var total = (precio * cantidad);
 
+                var total = (precio * cantidad);
+                cantidad = cantidad * quantity;
                 array = {
                     'id': n_productos,
                     'code': codigo,
@@ -104,11 +112,11 @@
                 );
                   
                 
-                $('#select_product').val('');
+                //$('#select_product').val('');
                 document.getElementById("quantity").value = "";
 
                 calcular_total();
-
+                    }
 
             });
 

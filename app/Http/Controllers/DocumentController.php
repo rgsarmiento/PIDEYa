@@ -85,7 +85,7 @@ class DocumentController extends Controller
         //return dd($products_document);
 
         //$products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
-        $products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
+        $products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         $customers = Customer::select('id', DB::raw('CONCAT(identification_number, " - ", name) AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         return view('documents.crear', compact('products', 'customers', 'products_document'));
     }
@@ -142,8 +142,9 @@ class DocumentController extends Controller
     {
         //$documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
         
-        $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total')
-        ->join('customers', 'documents.customer_id', '=', 'customers.id')->get();
+        $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total','users.name as seller')
+        ->join('customers', 'documents.customer_id', '=', 'customers.id')
+        ->join('users', 'documents.user_id', '=', 'users.id')->get();
 
         return ['data' => $documents];
 
