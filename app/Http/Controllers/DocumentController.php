@@ -144,7 +144,7 @@ class DocumentController extends Controller
         
         $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total','users.name as seller')
         ->join('customers', 'documents.customer_id', '=', 'customers.id')
-        ->join('users', 'documents.user_id', '=', 'users.id')->get();
+        ->join('users', 'documents.user_id', '=', 'users.id')->where('documents.company_id', $id)->get();
 
         return ['data' => $documents];
 
