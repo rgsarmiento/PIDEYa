@@ -126,6 +126,12 @@ class DocumentController extends Controller
        $documento->products = $data['products'];
        $documento->total = $data['total'];
 
+       if ($data['note'] == null) {
+        $documento->note = "";
+       }else{
+        $documento->note = $data['note'];
+       }    
+
        $documento->save();
 
        return redirect()->route('documents.index')->with('message', 'La orden de pedido para se creo con éxito');;
@@ -142,7 +148,7 @@ class DocumentController extends Controller
     {
         //$documents = Document::where('company_id', $id)->orderBy('updated_at', 'desc')->first();
         
-        $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total','users.name as seller')
+        $documents = Document::select('documents.id', 'customers.identification_number','customers.name','documents.products','documents.total','documents.note','users.name as seller')
         ->join('customers', 'documents.customer_id', '=', 'customers.id')
         ->join('users', 'documents.user_id', '=', 'users.id')->where('documents.company_id', $id)->get();
 

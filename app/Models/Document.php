@@ -14,7 +14,8 @@ class Document extends Model
         'date_issue',
         'customer_id',
         'products',
-        'total',        
+        'total',
+        'note',        
     ];
 
     public function company()

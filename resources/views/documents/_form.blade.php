@@ -29,7 +29,7 @@
 
                 <div class="row" id="div_quantity_value">
                     <div class="col-md-4 col-6">
-                        <div class="form-group">
+                        <div class="form-group" style="display: none;">
                             <label>Cajas</label>
                             <input type="number" class="form-control" id="quantity_c">
                         </div>
@@ -106,6 +106,22 @@
                     {!! Form::hidden('products', null, ['class' => 'form-control', 'id' => 'products']) !!}
                     {!! Form::hidden('total', null, ['class' => 'form-control', 'id' => 'total_document', 'value' => '0']) !!}
 
+                </div>
+            </div>
+        </div>
+
+
+        <div class="card">
+            <div class="card-header">
+                <h4>Notas-Observaciones</h4>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="form-group col-12">                       
+                        {!! Form::textarea('note', null, ['class' => 'form-control summernote-simple', 'id' => 'notes']) !!}
+
+                    </div>
                 </div>
             </div>
         </div>
