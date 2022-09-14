@@ -49,6 +49,38 @@
             $('#select_customer').select2();
             $('#select_product').select2();
 
+            $("#select_product").change(function(){
+                var precio = 0;
+                var precio_str =""
+                
+                var precio2 = 0;
+                var precio3 = 0;
+                var producto = $("#select_product option:selected").text();
+
+                var producto_index1 = producto.indexOf('P1(');
+                var producto_index2 = producto.indexOf('P2(');
+                var producto_index3 = producto.indexOf('P3(');
+                var quantity_index = producto.indexOf('C(');
+
+                if (producto_index1 !== -1) {   
+                    precio = producto.substring((producto_index1 + 3), producto_index2 - 3);                
+                    document.getElementById("precio1").value = precio
+                    document.getElementById("lprecio1").innerText = parseFloat(precio, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g,"$1,").toString()
+                }
+                if (producto_index2 !== -1) {   
+                    precio = producto.substring((producto_index2 + 3), producto_index3 - 3);                
+                    document.getElementById("precio2").value = precio
+                    document.getElementById("lprecio2").innerText = parseFloat(precio, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g,"$1,").toString()                    
+                }
+                if (producto_index3 !== -1) {        
+                    precio = producto.substring((producto_index3 + 3), quantity_index - 2);               
+                    document.getElementById("precio3").value = precio
+                    document.getElementById("lprecio3").innerText = parseFloat(precio, 10).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g,"$1,").toString()                                        
+                }
+
+                
+            });
+
             $('#add_product').click(function(e) {
                 e.preventDefault();
 
@@ -72,20 +104,19 @@
                 var productos = JSON.parse(document.getElementById("products").value);
                 var n_productos = productos.products.length;
 
-                var precio = 0;
+                
                 var quantity = 0;
                 var largo = producto.length
-                var producto_index = producto.indexOf('P(');
+                
+                var producto_index1 = producto.indexOf('P1(');
                 var quantity_index = producto.indexOf('C(');
                 
-                if (producto_index !== -1) {                   
-                    precio = producto.substring((producto_index + 2), quantity_index - 2);
-                }
+                
                 if (quantity_index !== -1) {
                     var largo = producto.length
                     quantity = producto.substring((quantity_index + 2), largo - 1);
                 }
-                producto = producto.substring(0,producto_index);
+                producto = producto.substring(0,producto_index1 -1);
 
                 if (cajas > 0 && quantity > 1) {
                     quantity = (quantity * cajas);
@@ -96,6 +127,9 @@
                 if (quantity == 1) {
                     quantity = 0;
                 }
+
+
+                let precio = $('input[name="precio"]:checked').val();
 
                 cantidad = (cantidad + quantity);
                 var total = (precio * cantidad);
@@ -145,6 +179,8 @@
                 var code = "";
                 var description = "";
                 var price = "";
+                var price_b = "";
+                var price_c = "";
                 var quantity = 0;
                 var total = "";
                

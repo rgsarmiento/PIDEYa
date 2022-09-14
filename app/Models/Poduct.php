@@ -13,6 +13,8 @@ class Poduct extends Model
         'description',
         'company_id',
         'price',
+        'price_b',
+        'price_c',
         'base_quantity',
         'stocks',
     ];

@@ -85,7 +85,7 @@ class DocumentController extends Controller
         //return dd($products_document);
 
         //$products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
-        $products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P(", price, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
+        $products = Poduct::select('code', DB::raw('CONCAT(code, " - ", description, " P1(", price, ")", " P2(", price_b, ")", " P3(", price_c, ")", " C(", base_quantity, ")") AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         $customers = Customer::select('id', DB::raw('CONCAT(identification_number, " - ", name) AS name'))->where('company_id', $company_id)->orderBy('name', 'asc')->get();
         return view('documents.crear', compact('products', 'customers', 'products_document'));
     }

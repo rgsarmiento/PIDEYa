@@ -53,6 +53,8 @@ class PoductController extends Controller
                 $product->description = $key['description'];
                 $product->company_id = $key['company_id'];
                 $product->price = $key['price'];
+                $product->price_b = $key['price_b'];
+                $product->price_c = $key['price_c'];
                 $product->base_quantity = $key['base_quantity'];
                 $product->stocks = $key['stocks'];
                 $product->save();

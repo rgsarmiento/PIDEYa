@@ -13,7 +13,11 @@
                     <div class="col-md-12 col-12">
                         <div class="form-group">
                             {!! Html::decode(Form::label('customer', 'Cliente')) !!}
-                            {!! Form::select('customer_id', $customers->pluck('name', 'id'), null, ['class' => 'form-control', 'id' => 'select_customer', 'placeholder' => '-- Seleccionar --']) !!}
+                            {!! Form::select('customer_id', $customers->pluck('name', 'id'), null, [
+                                'class' => 'form-control',
+                                'id' => 'select_customer',
+                                'placeholder' => '-- Seleccionar --',
+                            ]) !!}
                         </div>
                     </div>
                 </div>
@@ -21,11 +25,26 @@
                     <div class="col-md-12 col-12">
                         <div class="form-group">
                             {!! Html::decode(Form::label('product', 'Producto')) !!}
-                            {!! Form::select('product', $products->pluck('name', 'code'), null, ['class' => 'form-control', 'id' => 'select_product', 'placeholder' => '-- Seleccionar --']) !!}
+                            {!! Form::select('product', $products->pluck('name', 'code'), null, [
+                                'class' => 'form-control',
+                                'id' => 'select_product',
+                                'placeholder' => '-- Seleccionar --',
+                            ]) !!}
 
                         </div>
                     </div>
                 </div>
+
+                <p>Selccione un Precio:</p>
+                <div>
+                    <input type="radio" id="precio1" name="precio" value="precio1">
+                    <label id="lprecio1" for="precio1">0.0</label><br>
+                    <input type="radio" id="precio2" name="precio" value="precio2">
+                    <label id="lprecio2" for="precio2">0.0</label><br>
+                    <input type="radio" id="precio3" name="precio" value="precio3">
+                    <label id="lprecio3" for="precio3">0.0</label>
+                </div>
+               
 
                 <div class="row" id="div_quantity_value">
                     <div class="col-md-4 col-6">
@@ -54,8 +73,8 @@
                     <table id="tbl_products" class="table table-bordered table-hover border-primary table-striped mt-2">
                         <thead style="background-color: #6777ef;">
                             <th style="color: #fff;">Detalle</th>
-                            <th class="text-right" style="color: #fff;">Acciones</th>                            
-                            
+                            <th class="text-right" style="color: #fff;">Acciones</th>
+
                         </thead>
                         <tbody>
                             @php
@@ -96,9 +115,9 @@
                         </tbody>
                         <tfoot style="background-color: #b5eee0;">
                             <tr align="letf">
-                                
+
                                 <th colspan="2"><i class="fa fa-sort-up" style="font-size:20px;color:#00D0C4;"></i>
-                                   TOTAL  ${!! number_format(0, 2) !!} </th>
+                                    TOTAL ${!! number_format(0, 2) !!} </th>
                             </tr>
                         </tfoot>
                     </table>
@@ -118,7 +137,7 @@
             <div class="card-body">
 
                 <div class="row">
-                    <div class="form-group col-12">                       
+                    <div class="form-group col-12">
                         {!! Form::textarea('note', null, ['class' => 'form-control summernote-simple', 'id' => 'notes']) !!}
 
                     </div>
@@ -136,4 +155,3 @@
 
     </div>
 </div>
-
