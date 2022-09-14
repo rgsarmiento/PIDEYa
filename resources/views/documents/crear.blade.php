@@ -91,9 +91,11 @@
                 
                 var valida_cantidad = cantidad + cajas;
 
+                let precio = $('input[name="precio"]:checked').val();
+
                 if (producto != "-- Seleccionar --"){
 
-                if (valida_cantidad <= 0 || producto.length == 0) {
+                if (valida_cantidad <= 0 || producto.length == 0 || precio <= 0) {
                     return false
                 }
 
@@ -128,8 +130,6 @@
                     quantity = 0;
                 }
 
-
-                let precio = $('input[name="precio"]:checked').val();
 
                 cantidad = (cantidad + quantity);
                 var total = (precio * cantidad);
