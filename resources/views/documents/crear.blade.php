@@ -95,6 +95,10 @@
 
                 if (producto != "-- Seleccionar --"){
 
+                if (typeof precio === "undefined") {
+                    return false
+                }
+
                 if (valida_cantidad <= 0 || producto.length == 0 || precio <= 0) {
                     return false
                 }
