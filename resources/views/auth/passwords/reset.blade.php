@@ -7,7 +7,7 @@
         <div class="card-header"><h4>Set a New Password</h4></div>
 
         <div class="card-body">
-            <form method="POST" action="{{ url('/password/reset') }}">
+            <form method="POST" action="{{ url('/pideya/password/reset') }}">
                 @csrf
                 @if ($errors->any())
                     <div class="alert alert-danger p-0">
