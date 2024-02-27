@@ -20,14 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //iniciamos aca
-// Route::post('/customers', 'App\Http\Controllers\CustomerController@store');
-// Route::post('/products', 'App\Http\Controllers\PoductController@store'); 
-// Route::get('/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
-// Route::post('/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
+ Route::post('/customers', 'App\Http\Controllers\CustomerController@store');
+ Route::post('/products', 'App\Http\Controllers\PoductController@store'); 
+ Route::get('/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
+ Route::post('/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
 
-Route::prefix('pideya')->group(function () {
-    Route::post('/customers', 'App\Http\Controllers\CustomerController@store');
-    Route::post('/products', 'App\Http\Controllers\ProductController@store'); 
-    Route::get('/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
-    Route::post('/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
-});
+// Route::prefix('pideya')->group(function () {
+//     Route::post('/customers', 'App\Http\Controllers\CustomerController@store');
+//     Route::post('/products', 'App\Http\Controllers\ProductController@store'); 
+//     Route::get('/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
+//     Route::post('/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
+// });
