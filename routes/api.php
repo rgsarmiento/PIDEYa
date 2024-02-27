@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //iniciamos aca
-Route::post('pideya/customers', 'App\Http\Controllers\CustomerController@store');
-Route::post('pideya/products', 'App\Http\Controllers\PoductController@store'); 
-Route::get('pideya/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
-Route::post('pideya/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
+Route::post('/pideya/customers', 'App\Http\Controllers\CustomerController@store');
+Route::post('/pideya/products', 'App\Http\Controllers\PoductController@store'); 
+Route::get('/pideya/documents/{id}', 'App\Http\Controllers\DocumentController@show'); 
+Route::post('/pideya/documents/delete/{id}', 'App\Http\Controllers\DocumentController@destroy'); 
